@@ -1,0 +1,47 @@
+services:
+  news-server-01:
+    image: sy8389b/news-server-01
+    ports:
+      - "8001:8001"
+    environment:
+      - PORT=8001
+
+  news-server-02:
+    image: sy8389b/news-server-02
+    ports:
+      - "8002:8002"
+    environment:
+      - PORT=8002
+
+  news-server-03:
+    image: sy8389b/news-server-03
+    ports:
+      - "8003:8003"
+    environment:
+      - PORT=8003
+    command: gunicorn -b 0.0.0.0:8003 --timeout 120 --workers 5 SelectNewsService:app
+
+  media-news-server:
+    image: sy8389b/media-news-server
+    ports:
+      - "8004:8004"
+    environment:
+      - PORT=8004
+
+  get-news-server:
+    image: sy8389b/get-news-server
+    ports:
+      - "8005:8005"
+    environment:
+      - PORT=8005
+
+  word-server:
+    image: sy8389b/word-server
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+
+
+  
+  
